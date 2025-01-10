@@ -1,0 +1,25 @@
+{
+  "name": "super-survey-bros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IF0rst/super-survey-bros.git"
+  },
+  "author": "Pablo Huys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IF0rst/super-survey-bros/issues"
+  },
+  "homepage": "https://github.com/IF0rst/super-survey-bros#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
+  }
+}

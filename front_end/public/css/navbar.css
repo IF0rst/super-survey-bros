@@ -1,0 +1,46 @@
+@keyframes blinkToRed {
+  0%, 100% {
+
+  }
+  50% {
+    color: #ffb900;
+  }
+}
+
+nav {
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-wrapper {
+        img {
+            width: 30vw;
+            filter: var(--drop-shadow);
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+            li {
+                padding: 1vw;
+                text-decoration: none;
+                list-style-type: none;
+                a{
+                    font-size: var(--font-size);
+                    animation: blinkToRed 1s infinite;
+                }
+            }
+        }
+
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-top: 1rem;
+        flex-direction: column;
+    }
+}

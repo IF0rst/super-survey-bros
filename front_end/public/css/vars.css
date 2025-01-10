@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    background-image: url("/public/img/bck-pattern.png");
+    image-rendering: pixelated;
+    font-family: var(--font);
+    color: white;
+    animation: moveBackground 10s linear infinite;
+}
+
+
+@font-face {
+  font-family: "Pixel";
+  src: url("/public/fonts/osd_mono.ttf");
+}
+
+@keyframes moveBackground {
+    0% {
+
+    }
+    100% {
+        background-position: 768px 0;
+    }
+}
+
+
+:root {
+  --font : "Pixel";
+  --drop-shadow : drop-shadow(5px 6px 0px #000000);;
+  --font-size : 1.5vw;
+}

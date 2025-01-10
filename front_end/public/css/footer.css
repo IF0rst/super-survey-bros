@@ -1,0 +1,15 @@
+footer{
+    .footer-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #D54B00;
+
+
+        h3{
+            filter: drop-shadow(-1px 3px 0px #000000);
+            font-weight: lighter;
+        }
+    }
+}
