@@ -1,0 +1,27 @@
+const PUBLIC = (require.main.path + "/front_end/public")
+const db = require(require.main.path + "/back_end/services/db.js");
+
+function create_survey_get(request,response){
+    response.render(PUBLIC+"/html/create_survey.html")
+}
+
+async function create_survey_post(request,response){
+    const data = request.body;
+
+    switch (data.action){
+        case "create_survey":
+            response.json(await db.create_survey(data.model));
+            break;
+        case "get_surveys":
+            response.json(await db.get_surveys())
+            break;
+        case "delete_survey":
+            response.json(await db.delete_survey(data.id))
+            break;
+    }
+}
+
+module.exports = {
+    create_survey_get,
+    create_survey_post
+}

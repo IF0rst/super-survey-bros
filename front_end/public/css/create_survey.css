@@ -1,0 +1,65 @@
+.survey-creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #stuff-to-add {
+        border: none;
+        font-family: var(--font);
+        padding: 0.5vw;
+        filter: var(--drop-shadow)
+    }
+
+    #add-stuff-btn, #create-survey {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5vw;
+        border: none;
+        font-family: var(--font);
+        cursor: pointer;
+        filter: var(--drop-shadow);
+
+        b{
+            margin-right: 0.5vw;
+            font-size: 2vw;
+        }
+    }
+
+    #create-survey{
+        background: #E69C21;
+    }
+
+    .game-canvas {
+        height: 25vw;
+        image-rendering: pixelated;
+    }
+
+    .add-stuff {
+        display: flex;
+        justify-content: space-between;
+
+        div{
+            display: flex;
+        }
+    }
+
+    .survey-creator-wrapper {
+        margin-bottom: 3vw;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1vw;
+        background: #D54B00;
+        border: 2px solid;
+        width: 90%;
+        filter: var(--drop-shadow);
+
+    }
+}

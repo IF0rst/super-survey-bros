@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Survey Bros</title>
+    <link href="/public/css/vars.css" rel="stylesheet"/>
+    <link href="/public/css/create_survey.css" rel="stylesheet"/>
+    <script type="module" src="/public/js/create_survey.js"></script>
+</head>
+<body>
+<%- include('partials/navbar.html') %>
+<main>
+    <!–– Begin main ––>
+    <section class="survey-creator">
+        <div class="survey-creator-wrapper">
+            <div name="title" contenteditable="true">Title</div>
+            <div name="description" contenteditable="true">Here you can describe what the survey is all about!</div>
+            <form id="answers">
+
+            </form>
+            <div class="add-stuff">
+                <div>
+                    <select contenteditable="true" id="stuff-to-add">
+                        <option>Multiple-choice answer</option>
+                        <option>Boolean answer</option>
+                        <option>Text answer</option>
+                        <option>Slider answer</option>
+                    </select>
+                    <button id="add-stuff-btn">Add</button>
+                </div>
+                <button id="create-survey"><b>+</b> Create Survey</button>
+            </div>
+        </div>
+    </section>
+</main>
+<%- include('partials/footer.html') %>
+</body>
+</html>

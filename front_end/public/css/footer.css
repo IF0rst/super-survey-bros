@@ -1,15 +1,19 @@
 footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     .footer-wrapper{
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         background: #D54B00;
-
+        height: 2vw;
 
         h3{
-            filter: drop-shadow(-1px 3px 0px #000000);
+            filter: drop-shadow(-1px 1px 0px #000000);
             font-weight: lighter;
+            font-size: 1vw;
         }
     }
 }
