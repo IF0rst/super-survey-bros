@@ -17,42 +17,47 @@ async function attemptConnect() {
     }
 }
 
-async function create_survey(json){
+async function create_survey(json) {
     try {
         const forms = await db.collection("Forms");
         const result = await forms.insertOne({
-            model: json,
-            answers: [],
+            model: json, answers: [],
         });
         return {success: true}
-    }catch (err){
-        return {error : "An error occured"}
+    } catch (err) {
+        return {error: "An error occured"}
     }
 }
 
 async function get_surveys() {
     try {
         const forms = await db.collection("Forms");
-        const surveys = await forms.find({}, { projection: { model: 1, _id: 1 } }).toArray();
-        return surveys.map(survey => ({ model: survey.model, id: survey._id }));
+        const surveys = await forms.find({}, {projection: {model: 1, _id: 1}}).toArray();
+        return surveys.map(survey => ({model: survey.model, id: survey._id}));
     } catch (err) {
-        return { error: "An error occurred" };
+        return {error: "An error occurred"};
     }
 }
 
-async function delete_survey(id){
-     try {
+async function delete_survey(id) {
+    try {
         const forms = await db.collection("Forms");
-        forms.deleteOne( {"_id" : new ObjectId(id) })
+        forms.deleteOne({"_id": new ObjectId(id)})
         return {success: true}
     } catch (err) {
-        return { error: "An error occurred" };
+        return {error: "An error occurred"};
+    }
+}
+
+async function survey_data(id) {
+    try {
+        const forms = await db.collection("Forms");
+        return await forms.findOne({_id: new ObjectId(id)}, {projection: {model: 1, _id: 1}});
+    } catch (err) {
+        return {error: "An error occurred"};
     }
 }
 
 module.exports = {
-    attemptConnect,
-    create_survey,
-    get_surveys,
-    delete_survey,
+    attemptConnect, create_survey, get_surveys, delete_survey, survey_data
 }

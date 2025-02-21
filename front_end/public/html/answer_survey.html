@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <title>Super Survey Bros</title>
     <link href="/public/css/vars.css" rel="stylesheet"/>
+    <link href="/public/css/index.css" rel="stylesheet"/>
+    <script type="module" src="/public/js/answer_survey.js"></script>
 </head>
 <body>
-<main>
 <%- include('partials/navbar.html') %>
+<main>
+    <section class="survey-holder">
+        <div class="survey-wrapper">
+            <u><h1>Survey name</h1></u>
+            <h2>Survey description</h2>
+            <button>Send answers</button>
+        </div>
+    </section>
 </main>
+<%- include('partials/footer.html') %>
 </body>
 </html>

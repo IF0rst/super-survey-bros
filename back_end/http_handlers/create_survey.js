@@ -18,6 +18,9 @@ async function create_survey_post(request,response){
         case "delete_survey":
             response.json(await db.delete_survey(data.id))
             break;
+        case "survey_data":
+            response.json(await db.survey_data(data.id))
+            break;
     }
 }
 
