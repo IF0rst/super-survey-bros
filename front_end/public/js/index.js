@@ -31,7 +31,7 @@ function addSurvey(name, description,id) {
                     </div>
                     <div class="survey-btns">
                         <a href="/answer_survey?id=${id}"><button>Answer</button></a>
-                        <button>View answers</button>
+                        <a href="/view_answers?id=${id}"><button>View answers</button></a>
                         <button class="del">Delete</button>
                     </div>
                 </li>`

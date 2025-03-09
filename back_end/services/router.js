@@ -6,6 +6,7 @@ const HTML_PAGES = (require.main.path + "/front_end/public")
 const index_handler = require(HTTP_HANDLER + "/index_handler.js");
 const create_survey = require(HTTP_HANDLER + "/create_survey.js")
 const answer_survey = require(HTTP_HANDLER + "/answer_survey.js")
+const view_answers = require(HTTP_HANDLER + "/view_answers.js")
 
 const ROUTES = {
     "/": [{
@@ -22,6 +23,10 @@ const ROUTES = {
     "/answer_survey" : [{
         method: "get",
         handler: answer_survey.answer_survey_get
+    }],
+    "/view_answers" : [{
+        method: "get",
+        handler: view_answers.view_answers_get
     }]
 };
 

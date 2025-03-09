@@ -1,7 +1,6 @@
 const SURVEY_INIT_TYPE = {
     BUILD: 0, ANSWER: 1,
 }
-
 class SurveyBuilder {
     #parent;
     #type;
@@ -17,7 +16,7 @@ class SurveyBuilder {
         }
     }
 
-    #addMCA(element, data = {}) {
+    #addMCA(element, data = {}, answer = "") {
         element.innerHTML = `
             <input type="text" placeholder="Question name" value="${data.name}">
             <div></div>
@@ -70,19 +69,23 @@ class SurveyBuilder {
             });
         } else {
             element.querySelector("button").remove();
-            try{
+            try {
                 JSON.parse(data.data).forEach(d => {
-                if (d !== null){
-                     addResponse(d);
-                }
-            });
-            }catch (e) {
+                    if (d !== null) {
+                        addResponse(d);
+                    }
+                });
+            } catch (e) {
                 console.warn(`No responses available on MCA ${data.name}`)
+            }
+            // Set the answer if available
+            if (answer) {
+                element.setAttribute("q-answer", answer);
             }
         }
     }
 
-    #addBA(element, data = {}) {
+    #addBA(element, data = {}, answer = "") {
         element.innerHTML = `
             <input type="text" placeholder="Question name" value="${data.name}">
             <select>
@@ -92,26 +95,37 @@ class SurveyBuilder {
         `;
 
         if (this.#type === SURVEY_INIT_TYPE.ANSWER) {
-            element.querySelector("select").addEventListener("change", (event) => {
+            const selectElement = element.querySelector("select");
+            selectElement.addEventListener("change", (event) => {
                 element.setAttribute("q-answer", event.target.value);
             });
+
+            if (answer) {
+                selectElement.value = answer;
+            }
         }
     }
 
-    #addTA(element, data = {}) {
+    #addTA(element, data = {}, answer = "") {
         element.innerHTML = `
             <input type="text" placeholder="Question name" value="${data.name}">
-            <textarea placeholder="Answer"></textarea>
+            <textarea placeholder="Answer">${answer}</textarea>
         `;
 
         if (this.#type === SURVEY_INIT_TYPE.ANSWER) {
-            element.querySelector("textarea").addEventListener("input", (event) => {
+            const textarea = element.querySelector("textarea");
+            textarea.addEventListener("input", (event) => {
                 element.setAttribute("q-answer", event.target.value);
             });
+
+            // Set the answer if provided
+            if (answer) {
+                textarea.value = answer;
+            }
         }
     }
 
-    #addSA(element, data = {}) {
+    #addSA(element, data = {}, answer = "") {
         element.innerHTML = `
             <input type="text" placeholder="Question name" value="${data.name}">
             <div>
@@ -122,13 +136,19 @@ class SurveyBuilder {
         `;
 
         if (this.#type === SURVEY_INIT_TYPE.ANSWER) {
-            element.querySelector("input[type=range]").addEventListener("input", (event) => {
+            const rangeInput = element.querySelector("input[type=range]");
+            rangeInput.addEventListener("input", (event) => {
                 element.setAttribute("q-answer", event.target.value);
             });
+
+            // Set the answer if provided
+            if (answer) {
+                rangeInput.value = answer;
+            }
         }
     }
 
-    addQuestion(questionType, data = { name: "" }) {
+    addQuestion(questionType, data = { name: "" }, answer = "") {
         const element = document.createElement("div");
 
         element.setAttribute("q-type", questionType);
@@ -138,16 +158,16 @@ class SurveyBuilder {
 
         switch (questionType) {
             case "mca":
-                this.#addMCA(element, data);
+                this.#addMCA(element, data, answer);
                 break;
             case "ba":
-                this.#addBA(element, data);
+                this.#addBA(element, data, answer);
                 break;
             case "ta":
-                this.#addTA(element, data);
+                this.#addTA(element, data, answer);
                 break;
             case "sa":
-                this.#addSA(element, data);
+                this.#addSA(element, data, answer);
                 break;
         }
 
@@ -172,8 +192,8 @@ class SurveyBuilder {
         } else {
             const data = Array.from(this.#parent.children).map(el => ({
                 name: el.getAttribute("q-name"),
-                answer : el.getAttribute("q-answer"),
-            }))
+                answer: el.getAttribute("q-answer"),
+            }));
             return data;
         }
     }

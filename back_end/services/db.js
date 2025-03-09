@@ -77,6 +77,25 @@ async function answer_survey(id, data) {
 }
 
 
+async function survey_data_answers(id) {
+    try {
+        const forms = await db.collection("Forms");
+        const survey = await forms.findOne(
+            { _id: new ObjectId(id) },
+            { projection: { answers: 1, _id: 0 } }
+        );
+
+        if (!survey) {
+            return { error: "Survey not found" };
+        }
+
+        return { answers: survey.answers };
+    } catch (err) {
+        return { error: "An error occurred" };
+    }
+}
+
+
 module.exports = {
-    attemptConnect, create_survey, get_surveys, delete_survey, survey_data,answer_survey
+    attemptConnect, create_survey, get_surveys, delete_survey, survey_data,answer_survey,survey_data_answers
 }

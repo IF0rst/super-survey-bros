@@ -22,7 +22,7 @@ async function initSurveyAnswer(){
     const data = await http_request("/create_survey","POST",{action: "survey_data",id: id})
     const builder = new SurveyBuilder(form,SURVEY_INIT_TYPE.ANSWER)
 
-    updateTitleDescription(data.model.title,data.model.description)
+    updateTitleDescription(data.model.name,data.model.description)
     addFields(data.model.questions,builder)
 
     sendButton.addEventListener("click", (event) => {

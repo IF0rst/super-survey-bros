@@ -24,6 +24,9 @@ async function create_survey_post(request,response){
         case "answer_survey":
             response.json(await db.answer_survey(data.id,data.data))
             break;
+        case "survey_data_answers":
+            response.json(await db.survey_data_answers(data.id))
+            break;
     }
 }
 

@@ -1,5 +1,4 @@
 .survey-holder {
-
     * {
         margin: 0;
         padding: 0;
@@ -11,6 +10,24 @@
 
     h2 {
         font-weight: lighter;
+    }
+
+    .survey-answer-list > div{
+        background: #ffb900;
+        padding: 0.5vw;
+        color: #6e2700;
+        margin-bottom: 0.5vw;
+        filter: var(--drop-shadow);
+        cursor: pointer;
+
+        &:hover {
+            padding: 0.8vw;
+            transition: padding 0.2s ease-in-out;
+        }
+
+        &:not(:hover){
+            transition: padding 0.2s ease-in-out;
+        }
     }
 
     .survey-wrapper {

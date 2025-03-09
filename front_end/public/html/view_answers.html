@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Survey Bros</title>
+    <link href="/public/css/vars.css" rel="stylesheet"/>
+    <link href="/public/css/index.css" rel="stylesheet"/>
+    <script type="module" src="/public/js/survey_builder.js"></script>
+    <script type="module" src="/public/js/view_answers.js"></script>
+</head>
+<body>
+<%- include('partials/navbar.html') %>
+<main>
+    <section class="survey-holder">
+        <div class="survey-wrapper">
+            <u><h1>Name's answers</h1></u>
+            <h2>Here you can check what people have responded.</h2>
+            <div class="survey-answer-list">
+
+            </div>
+        </div>
+    </section>
+    <section class="survey-holder">
+        <form class="answers">
+
+        </form>
+    </section>
+</main>
+<%- include('partials/footer.html') %>
+</body>
+</html>
