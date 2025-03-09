@@ -27,7 +27,7 @@ async function initSurveyAnswer(){
 
     sendButton.addEventListener("click", (event) => {
         event.preventDefault()
-        console.log(builder.toAnswerJSON())
+        http_request("/create_survey","POST",{action: "answer_survey",id: id,data: builder.export()})
     })
 }
 

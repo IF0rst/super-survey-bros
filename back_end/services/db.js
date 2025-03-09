@@ -58,6 +58,25 @@ async function survey_data(id) {
     }
 }
 
+async function answer_survey(id, data) {
+    try {
+        const forms = await db.collection("Forms");
+        const result = await forms.updateOne(
+            { _id: new ObjectId(id) },
+            { $push: { answers: data } }
+        );
+
+        if (result.modifiedCount === 1) {
+            return { success: true };
+        } else {
+            return { error: "Survey not found or no changes made"};
+        }
+    } catch (err) {
+        return { error: "An error occurred" };
+    }
+}
+
+
 module.exports = {
-    attemptConnect, create_survey, get_surveys, delete_survey, survey_data
+    attemptConnect, create_survey, get_surveys, delete_survey, survey_data,answer_survey
 }

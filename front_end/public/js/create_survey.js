@@ -1,4 +1,4 @@
-import {SurveyBuilder, SURVEY_INIT_TYPE} from "/public/js/survey_builder.js";
+import {SURVEY_INIT_TYPE, SurveyBuilder} from "/public/js/survey_builder.js";
 
 document.addEventListener("DOMContentLoaded", initSurveyCreator);
 
@@ -18,17 +18,18 @@ function initSurveyCreator() {
     const selectInput = document.getElementById("stuff-to-add");
     const createSurveyButton = document.getElementById("create-survey");
 
-    const builder = new SurveyBuilder(form,SURVEY_INIT_TYPE.BUILD);
+    const builder = new SurveyBuilder(form, SURVEY_INIT_TYPE.BUILD);
 
     addButton.addEventListener("click", (event) => {
         event.preventDefault();
-        builder.addQuestion(selectInput.value);
+        const selectedOption = selectInput.options[selectInput.selectedIndex];
+        const qType = selectedOption.getAttribute("q-type");
+        builder.addQuestion(qType);
     });
 
     createSurveyButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const surveyData = builder.toModelJSON(document.querySelector("[name='title']").textContent,document.querySelector("[name='description']").textContent)
-        console.log(surveyData);
-        http_request("/create_survey","POST", {action : "create_survey", model : surveyData})
+        const surveyData = builder.export(document.querySelector("[name='title']").textContent, document.querySelector("[name='description']").textContent)
+        http_request("/create_survey", "POST", {action: "create_survey", model: surveyData})
     });
 }

@@ -14,7 +14,7 @@ async function initSurveyList() {
     const data = await http_request("/create_survey","POST",{action: "get_surveys"})
 
     data.forEach(d=>{
-        addSurvey(d.model.title,d.model.description,d.id);
+        addSurvey(d.model.name,d.model.description,d.id);
     })
 }
 
@@ -31,7 +31,7 @@ function addSurvey(name, description,id) {
                     </div>
                     <div class="survey-btns">
                         <a href="/answer_survey?id=${id}"><button>Answer</button></a>
-                        <button>Edit</button>
+                        <button>View answers</button>
                         <button class="del">Delete</button>
                     </div>
                 </li>`
