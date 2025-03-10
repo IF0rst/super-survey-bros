@@ -29,6 +29,7 @@ async function initSurveyAnswers(){
 }
 
 function showAnswers(answer,data,builder){
+    builder.clear()
     data.model.questions.forEach((el,i)=>{
         builder.addQuestion(el.type,data.model.questions[i],answer[i].answer)
     })

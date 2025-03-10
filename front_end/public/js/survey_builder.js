@@ -197,6 +197,12 @@ class SurveyBuilder {
             return data;
         }
     }
+
+    clear(){
+        Array.from(this.#parent.children).forEach(e=>{
+            e.remove();
+        })
+    }
 }
 
 export { SurveyBuilder, SURVEY_INIT_TYPE };

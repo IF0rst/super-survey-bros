@@ -27,9 +27,10 @@ function initSurveyCreator() {
         builder.addQuestion(qType);
     });
 
-    createSurveyButton.addEventListener("click", (event) => {
+    createSurveyButton.addEventListener("click", async (event) => {
         event.preventDefault();
         const surveyData = builder.export(document.querySelector("[name='title']").textContent, document.querySelector("[name='description']").textContent)
-        http_request("/create_survey", "POST", {action: "create_survey", model: surveyData})
+        await http_request("/create_survey", "POST", {action: "create_survey", model: surveyData})
+        document.location = "/"
     });
 }

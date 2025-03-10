@@ -25,9 +25,10 @@ async function initSurveyAnswer(){
     updateTitleDescription(data.model.name,data.model.description)
     addFields(data.model.questions,builder)
 
-    sendButton.addEventListener("click", (event) => {
+    sendButton.addEventListener("click", async (event) => {
         event.preventDefault()
-        http_request("/create_survey","POST",{action: "answer_survey",id: id,data: builder.export()})
+        await http_request("/create_survey","POST",{action: "answer_survey",id: id,data: builder.export()})
+        document.location = "/"
     })
 }
 
